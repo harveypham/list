@@ -131,7 +131,7 @@ void TestInsertAtEndAddsItemToBack() {
     assert(l.back() == 100 && l.size() == 11);
 }
 
-void TestInsertAtIteratorMoveItemsToTail() {
+void TestInsertAtIteratorMovesItemsTowardTail() {
     auto l = List<int>{};
     for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
         l.push_back(i);
@@ -167,7 +167,7 @@ void TestInsertAtRBeginAddsItemToBack() {
     assert(l.back() == 100 && l.size() == 11);
 }
 
-void TestInsertAtIteratorMoveItemsToHead() {
+void TestInsertAtReverseIteratorMovesItemsTowardHead() {
     auto l = List<int>{};
     for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
         l.push_back(i);
@@ -196,17 +196,17 @@ int main() {
     TestPopPackRemovesBackItemAndDecreasesSizeByOne();
 
     TestBeginReturnsAnIteratorPointedAtFrontThatCanBeAdvancedToEnd();
-    TestRBeginReturnsAnIteratorPointedAtBackThatCanBeAdvancedToBeforeBegin();
     TestIteratorCanBeTraverseBackwardToFront();
+    TestRBeginReturnsAnIteratorPointedAtBackThatCanBeAdvancedToBeforeBegin();
     TestReverseIteratorCanBeTraverseBackwardToBack();
 
     TestInsertAtBeginAddsItemToFront();
     TestInsertAtEndAddsItemToBack();
-    TestInsertAtIteratorMoveItemsToTail();
+    TestInsertAtIteratorMovesItemsTowardTail();
 
     TestInsertAtREndAddsItemToFront();
     TestInsertAtRBeginAddsItemToBack();
-    TestInsertAtIteratorMoveItemsToHead();
+    TestInsertAtReverseIteratorMovesItemsTowardHead();
 
     cout << "All tests passed!!!" << endl;
     return 0;
