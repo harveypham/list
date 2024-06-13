@@ -1,6 +1,7 @@
-#pragma once
+#pragma 
 
 #include <cstddef>
+#include <initializer_list>
 
 template<typename _Data>
 class List {
@@ -62,6 +63,14 @@ private:
 public:
 
     List(): _head(nullptr), _tail(nullptr), _size(0) {}
+    List(std::initializer_list<value_type> values): List() {
+        for (const auto & value : values) {
+            push_back(value);
+        }
+    }
+    List(List &&l) = default;
+
+    List& operator=(List &&l) = default;
 
     ~List() {
         while (!empty()) {

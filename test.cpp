@@ -3,8 +3,7 @@
 #include "list.hpp"
 
 void TestDefaultConstructorCreatesEmptyList() {
-    auto l = List<int>{};
-    assert(l.empty());
+    assert(List<int>{}.empty());
 }
 
 void TestPushFrontAddsItemToFrontAndIncreasesSizeByOne() {
@@ -16,10 +15,7 @@ void TestPushFrontAddsItemToFrontAndIncreasesSizeByOne() {
 }
 
 void TestPopFrontRemovesFrontItemAndDecreasesSizeByOne() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_front(i);
-    }
+    List<int> l{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     for (auto i : {9, 8, 7, 6, 5, 4, 3, 2, 1}) {
         l.pop_front();
@@ -30,7 +26,7 @@ void TestPopFrontRemovesFrontItemAndDecreasesSizeByOne() {
 }
 
 void TestPushBackAddsItemToBackAndIncreasesSizeByOne() {
-    auto l = List<int>{};
+    List<int> l{};
     for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
         l.push_back(i);
         assert(l.back() == i && l.size() == i);
@@ -38,11 +34,7 @@ void TestPushBackAddsItemToBackAndIncreasesSizeByOne() {
 }
 
 void TestPopPackRemovesBackItemAndDecreasesSizeByOne() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
-
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     for (auto i : {9, 8, 7, 6, 5, 4, 3, 2, 1}) {
         l.pop_back();
         assert(l.back() == i && l.size() == i);
@@ -52,10 +44,7 @@ void TestPopPackRemovesBackItemAndDecreasesSizeByOne() {
 }
 
 void TestBeginReturnsAnIteratorPointedAtFrontThatCanBeAdvancedToEnd() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     int start = 1;
     for (auto it = l.begin(); it != l.end(); ++it) {
@@ -64,10 +53,7 @@ void TestBeginReturnsAnIteratorPointedAtFrontThatCanBeAdvancedToEnd() {
 }
 
 void TestRBeginReturnsAnIteratorPointedAtBackThatCanBeAdvancedToBeforeBegin() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     int start = 10;
     for (auto it = l.rbegin(); it != l.rend(); ++it) {
@@ -76,10 +62,7 @@ void TestRBeginReturnsAnIteratorPointedAtBackThatCanBeAdvancedToBeforeBegin() {
 }
 
 void TestIteratorCanBeTraverseBackwardToFront() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     auto it = l.begin();
     for (auto i: {1, 2, 3, 4, 5, 6, 7, 8, 9}) {
@@ -95,10 +78,7 @@ void TestIteratorCanBeTraverseBackwardToFront() {
 }
 
 void TestReverseIteratorCanBeTraverseBackwardToBack() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     auto it = l.rbegin();
     for (auto i : {10, 9, 8, 7, 6, 5, 4, 3, 2}) {
@@ -114,28 +94,19 @@ void TestReverseIteratorCanBeTraverseBackwardToBack() {
 }
 
 void TestInsertAtBeginAddsItemToFront() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     l.insert(100, l.begin());
     assert(l.front() == 100 && l.size() == 11);
 }
 
 void TestInsertAtEndAddsItemToBack() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     l.insert(100, l.end());
     assert(l.back() == 100 && l.size() == 11);
 }
 
 void TestInsertAtIteratorMovesItemsTowardTail() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     auto it = l.begin();
     ++it;
     ++it;
@@ -150,28 +121,19 @@ void TestInsertAtIteratorMovesItemsTowardTail() {
 }
 
 void TestInsertAtREndAddsItemToFront() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     l.insert(100, l.rend());
     assert(l.front() == 100 && l.size() == 11);
 }
 
 void TestInsertAtRBeginAddsItemToBack() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     l.insert(100, l.rbegin());
     assert(l.back() == 100 && l.size() == 11);
 }
 
 void TestInsertAtReverseIteratorMovesItemsTowardHead() {
-    auto l = List<int>{};
-    for (auto i : {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) {
-        l.push_back(i);
-    }
+    List<int> l{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     auto it = l.rbegin();
     ++it;
     ++it;
